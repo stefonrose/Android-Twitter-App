@@ -11,14 +11,14 @@ import java.util.List;
 
 public class Tweet {
     public String body;
-    public String createdAt;
     public String time;
     public User user;
+    public long id;
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
+        tweet.id = jsonObject.getLong("id");
         tweet.body = jsonObject.getString("text");
-        //tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.time = TimeFormatter.getRelativeTimeAgo(jsonObject.getString("created_at"));
         return tweet;
